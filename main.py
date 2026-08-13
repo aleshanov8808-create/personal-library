@@ -13,6 +13,7 @@ while True:
     print("3. Удалить книгу")
     print("4. Найти книгу")
     print("5. Отметить книгу прочитанной")
+    print("6. Показать статистику")
     print("0. Выйти")
     print("==============================")
 
@@ -41,12 +42,13 @@ while True:
         if not title:
             print("❌ Название книги не может быть пустым!")
             continue
+
         author = input("Автор: ").strip()
 
         if not author:
             print("❌ Автор не может быть пустым!")
             continue
-        # Создаем запись о книге и сохраняем
+
         book = {
             "title": title,
             "author": author,
@@ -55,7 +57,6 @@ while True:
 
         books.append(book)
         save_books(books)
-
         print("Книга добавлена!")
 
     elif choice == "3":
@@ -130,12 +131,22 @@ while True:
                 if 1 <= number <= len(books):
                     books[number - 1]["read"] = True
                     save_books(books)
-
                     print("Книга отмечена как прочитанная!")
                 else:
                     print("Такого номера книги нет.")
             else:
                 print("Введите число.")
+
+    elif choice == "6":
+        total_books = len(books)
+        read_books = sum(1 for book in books if book["read"])
+        unread_books = total_books - read_books
+
+        print("\n===== СТАТИСТИКА =====")
+        print(f"Всего книг: {total_books}")
+        print(f"Прочитано: {read_books}")
+        print(f"Не прочитано: {unread_books}")
+        print("======================")
 
     elif choice == "0":
         print("До свидания!")
