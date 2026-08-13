@@ -4,8 +4,19 @@ FILE_NAME = "books.json"
 
 
 def load_books():
-    with open(FILE_NAME, "r", encoding="utf-8") as file:
-        return json.load(file)
+    try:
+        with open(FILE_NAME, "r", encoding="utf-8") as file:
+            return json.load(file)
+
+    except FileNotFoundError:
+        print("⚠️ Файл books.json не найден. Создаём пустую библиотеку.")
+        return []
+
+    except json.JSONDecodeError:
+        print("⚠️ Файл books.json повреждён. Используем пустую библиотеку.")
+        return []
+    
+        
 
 
 def save_books(books):
