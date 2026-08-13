@@ -36,8 +36,16 @@ while True:
                 print("----------------------")
 
     elif choice == "2":
-        title = input("Название книги: ")
-        author = input("Автор: ")
+        title = input("Название книги: ").strip()
+
+        if not title:
+            print("❌ Название книги не может быть пустым!")
+            continue
+        author = input("Автор: ").strip()
+
+        if not author:
+            print("❌ Автор не может быть пустым!")
+            continue
 
         book = {
             "title": title,
