@@ -46,7 +46,7 @@ while True:
         if not author:
             print("❌ Автор не может быть пустым!")
             continue
-
+        # Создаем запись о книге и сохраняем
         book = {
             "title": title,
             "author": author,
